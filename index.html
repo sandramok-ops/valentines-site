@@ -5,7 +5,6 @@
 <title>Valentine's Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Allmän stil */
 body { 
     font-family: 'Raleway', sans-serif; 
     text-align: center; 
@@ -13,12 +12,23 @@ body {
     background-color: #FFD6E8; /* ljus rosa bakgrund */
 }
 
-/* Text */
-h1 { font-family:'Pacifico', cursive; font-size:3em; color:#ff3366; margin:20px 0; }
+/* Pulsande rubriker */
+h1 {
+    font-family:'Pacifico', cursive; 
+    font-size:3em; 
+    color:#ff3366; 
+    margin:20px 0;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
 h2 { font-size:1.8em; color:#fff; margin:20px 0; }
 p { font-size:1.2em; margin:20px 0; }
 
-/* Buttons */
+/* Buttons med roliga hover-effekter */
 button {
     padding: 15px 25px; 
     font-size: 18px; 
@@ -28,9 +38,13 @@ button {
     color: white; 
     margin: 15px;
     cursor: pointer; 
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
 }
-button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+button:hover { 
+    transform: translateY(-5px) rotate(-2deg); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
+    background: linear-gradient(45deg, #ff8a8a, #ff1a66);
+}
 button:disabled { background: gray; cursor: not-allowed; }
 
 /* Input */
@@ -43,16 +57,40 @@ input {
     margin-top: 20px; 
 }
 
-/* Bild */
+/* Bilden blir mindre */
 img { 
-    max-width: 40%; 
+    max-width: 30%;  
     border-radius: 20px; 
     margin-top: 20px; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
 }
 
-/* Sektioner */
 .hidden { display:none; }
+
+/* Shakande fel-input */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Joke-rutan */
+#jokeBox {
+    background-color: #ffccd5;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 20px auto;
+    width: 300px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+#jokeBox:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
 </style>
 </head>
 <body>
@@ -60,15 +98,20 @@ img {
 <!-- Start -->
 <div id="startSection">
     <h1>Happy Valentine's Day!</h1>
+    
+    <div id="jokeBox">Do you want to hear a joke? 🤔</div>
+    <p id="jokeText" class="hidden">Sugginma balls! 😂</p>
+    
     <button id="challengeButton">Ready for the Challenge?</button>
 </div>
 
 <!-- Input -->
 <div id="loveInputSection" class="hidden">
-    <h2>Tap the magic words in Swedish (ps. its "I love you")</h2>
+    <h2>Tap the magic words in Swedish (ps its "I love you")</h2>
     <input type="text" id="loveInput" placeholder="Type here...">
     <button id="submitLove">Submit</button>
     <p id="errorMessage" style="color:#ff3366;"></p>
+    <img src="loveinput.jpg" alt="Love input image">
 </div>
 
 <!-- Reward -->
@@ -78,28 +121,27 @@ img {
     <p>Which one is right? (There will be a surprise if you answer it right)</p>
     <div>
         <button id="sandraButton">Sandra loves Payton more and the most</button>
-        <button id="paytonButton" disabled>Payton loves Sandra</button>
+        <button id="paytonButton" disabled>Payton loves Sandra blahblablah</button>
     </div>
 </div>
 
+
 <!-- Surprise -->
 <div id="surpriseSection" class="hidden">
-    <h1>I love you! 💖</h1>
-    <p>Your surprise is in your wardrobe</p>
-    <img src="ourphoto.jpg" alt="Us together">
+    <p>Your surprise is in your wardrobe you fucker🎁</p>
+    <img src="surprise.jpg" alt="Surprise image">
 </div>
+
 
 <script>
 // Klickräknare för challenge
 let clicks = 0;
 
-// Elementreferenser
 const startSection = document.getElementById('startSection');
 const loveInputSection = document.getElementById('loveInputSection');
 const rewardSection = document.getElementById('rewardSection');
 const surpriseSection = document.getElementById('surpriseSection');
 
-// Ready for the Challenge-knappen
 const challengeButton = document.getElementById('challengeButton');
 challengeButton.addEventListener('click', () => {
     clicks++;
@@ -108,21 +150,32 @@ challengeButton.addEventListener('click', () => {
         const y = Math.random()*100-50;
         challengeButton.style.transform = `translate(${x}px,${y}px)`;
     } else {
-        challengeButton.style.transform = 'translate(0,0)';
         startSection.classList.add('hidden');
         loveInputSection.classList.remove('hidden');
+        challengeButton.style.transform = 'translate(0,0)';
     }
+});
+
+// Joke-box
+const jokeBox = document.getElementById('jokeBox');
+const jokeText = document.getElementById('jokeText');
+jokeBox.addEventListener('click', () => {
+    jokeText.classList.remove('hidden');
 });
 
 // Kontrollera “jag älskar dig”
 document.getElementById('submitLove').addEventListener('click', () => {
     const input = document.getElementById('loveInput').value.trim().toLowerCase();
+    const inputField = document.getElementById('loveInput');
     if(input === "jag älskar dig"){
         loveInputSection.classList.add('hidden');
         rewardSection.classList.remove('hidden');
-        launchConfetti(); // starta konfetti direkt
+        launchConfetti(); // starta konfetti
+        launchHearts(); // hjärtan
     } else {
         document.getElementById('errorMessage').innerText = "Oops! Try again! 💔";
+        inputField.style.animation = "shake 0.3s";
+        setTimeout(() => inputField.style.animation = "", 300);
     }
 });
 
@@ -130,6 +183,8 @@ document.getElementById('submitLove').addEventListener('click', () => {
 document.getElementById('sandraButton').addEventListener('click', () => {
     rewardSection.classList.add('hidden');
     surpriseSection.classList.remove('hidden');
+    launchConfetti(); // konfetti
+    launchHearts();
 });
 
 // Konfetti-funktion
@@ -155,6 +210,27 @@ function launchConfetti(){
         setTimeout(() => piece.remove(), duration+100);
     }
 }
+
+// Hjärtan-funktion
+function launchHearts(){
+    for(let i=0;i<30;i++){
+        const heart = document.createElement('div');
+        heart.innerText = '💖';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = '0px';
+        heart.style.fontSize = (20+Math.random()*20)+'px';
+        heart.style.zIndex = 1000;
+        heart.style.transition = `transform 4s linear, opacity 4s linear`;
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            heart.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random()*360}deg)`;
+            heart.style.opacity = 0;
+        }, 50);
+        setTimeout(() => heart.remove(), 4100);
+    }
+}
 </script>
 </body>
 </html>
+
