@@ -2,95 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Valentine's Challenge</title>
+<title>Valentine's Adventure</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { 
     font-family: 'Raleway', sans-serif; 
     text-align: center; 
     margin: 0;
-    background-color: #FFD6E8; /* ljus rosa bakgrund */
+    background-color: #FFD6E8;
+    transition: background-color 0.5s;
+}
+/* Begränsa matte-frågan */
+#mathChallengeSection p {
+    max-width: 600px; 
+    margin: 20px auto; 
+    line-height: 1.5em; 
+    font-size: 1.2em;
 }
 
-/* Pulsande rubriker */
-h1 {
-    font-family:'Pacifico', cursive; 
-    font-size:3em; 
-    color:#ff3366; 
-    margin:20px 0;
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+#mathChallengeSection img {
+    max-width: 300px; 
+    margin: 20px auto;
+    display: block; 
 }
 
+#mathChallengeSection .mathBtn {
+    max-width: 180px; 
+    display: inline-block;
+}
+
+
+h1 { font-family:'Pacifico', cursive; font-size:3em; color:#ff3366; margin:20px 0; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
 h2 { font-size:1.8em; color:#fff; margin:20px 0; }
 p { font-size:1.2em; margin:20px 0; }
 
-/* Buttons med roliga hover-effekter */
-button {
-    padding: 15px 25px; 
-    font-size: 18px; 
-    border: none; 
-    border-radius: 12px;
-    background: linear-gradient(45deg, #ff6a6a, #ff3366); 
-    color: white; 
-    margin: 15px;
-    cursor: pointer; 
-    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
-}
-button:hover { 
-    transform: translateY(-5px) rotate(-2deg); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4); 
-    background: linear-gradient(45deg, #ff8a8a, #ff1a66);
-}
+button { padding: 15px 25px; font-size: 18px; border: none; border-radius: 12px; background: linear-gradient(45deg,#ff6a6a,#ff3366); color:white; margin:15px; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s, background 0.3s;}
+button:hover { transform: translateY(-5px) rotate(-2deg); box-shadow:0 10px 20px rgba(0,0,0,0.4); background: linear-gradient(45deg,#ff8a8a,#ff1a66);}
 button:disabled { background: gray; cursor: not-allowed; }
 
-/* Input */
-input { 
-    padding: 12px; 
-    font-size: 16px; 
-    border-radius: 8px; 
-    border: none; 
-    width: 250px; 
-    margin-top: 20px; 
-}
-
-/* Bilden blir mindre */
-img { 
-    max-width: 30%;  
-    border-radius: 20px; 
-    margin-top: 20px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-}
-
+input { padding: 12px; font-size: 16px; border-radius:8px; border:none; width:250px; margin-top:20px; }
+img { max-width:30%; border-radius:20px; margin-top:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3);}
 .hidden { display:none; }
 
-/* Shakande fel-input */
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
+@keyframes shake {0%{transform:translateX(0);}25%{transform:translateX(-5px);}50%{transform:translateX(5px);}75%{transform:translateX(-5px);}100%{transform:translateX(0);}}
 
-/* Joke-rutan */
-#jokeBox {
-    background-color: #ffccd5;
-    border-radius: 12px;
-    padding: 15px;
-    margin: 20px auto;
-    width: 300px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.2s;
-}
-#jokeBox:hover {
-    transform: scale(1.05) rotate(-2deg);
-}
+#jokeBox { background-color:#ffccd5; border-radius:12px; padding:15px; margin:20px auto; width:300px; cursor:pointer; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s;}
+#jokeBox:hover { transform: scale(1.05) rotate(-2deg); }
+
+#danceEmojis div { position: absolute; font-size: 30px; pointer-events: none; transition: transform 2s linear, opacity 2s linear; }
+
+.quizQuestion{ margin:20px 0; }
+.quizBtn,.emojiBtn,.puzzleBtn,.mathBtn{ padding:10px 20px; margin:5px; border-radius:10px; border:none; cursor:pointer; background:linear-gradient(45deg,#ff6a6a,#ff3366); color:white; font-weight:bold; transition:transform 0.2s;}
+.quizBtn:hover,.emojiBtn:hover,.puzzleBtn:hover,.mathBtn:hover { transform: scale(1.05); }
+
+#heartsContainer div{ display:inline-block; font-size:40px; margin:10px; cursor:pointer; transition: transform 0.2s;}
+#heartsContainer div:hover{ transform: scale(1.2); }
+
+.mathBtn { padding: 12px 25px; margin: 5px; border-radius: 12px; border: none; cursor: pointer; background: linear-gradient(45deg, #ff6a6a, #ff3366); color: white; font-weight: bold; transition: transform 0.2s;}
+.mathBtn:hover { transform: scale(1.05); }
 </style>
 </head>
 <body>
@@ -98,10 +68,9 @@ img {
 <!-- Start -->
 <div id="startSection">
     <h1>Happy Valentine's Day!</h1>
-    
+    <h2>Dear Payton, to get your reward you have to make it through some small challenges, may the force be with you.</h2>
     <div id="jokeBox">Do you want to hear a joke? 🤔</div>
-    <p id="jokeText" class="hidden">Sugginma balls! 😂</p>
-    
+    <p id="jokeText" class="hidden">Sugginma balls you fucker!</p>
     <button id="challengeButton">Ready for the Challenge?</button>
 </div>
 
@@ -114,24 +83,84 @@ img {
     <img src="loveinput.jpg" alt="Love input image">
 </div>
 
+<!-- Mini Dance Floor -->
+<div id="danceFloorSection" class="hidden">
+    <h2>Good job Payton, here is a small award🎉</h2>
+    <p>Click on the button for a nice suprise!</p>
+    <button id="djButton">Suprise</button>
+    <div id="danceEmojis"></div>
+    <p style="margin-top:20px;">When you’re ready, click the next button for your quiz!</p>
+    <button id="danceNextButton">Next 💌</button>
+</div>
+
+<!-- Quiz Section -->
+<div id="quizSection" class="hidden">
+    <h2>To get your reward, answer these correctly! 💌</h2>
+
+    <div class="quizQuestion">
+        <p>1. What's my second name?</p>
+        <button class="quizBtn" data-answer="wrong">Fucker</button>
+        <button class="quizBtn" data-answer="correct">Sara</button>
+        <button class="quizBtn" data-answer="wrong">Deez balls</button>
+    </div>
+
+    <div class="quizQuestion">
+        <p>2. What's my favourite colour?</p>
+        <button class="quizBtn" data-answer="wrong">Poop brown</button>
+        <button class="quizBtn" data-answer="wrong">Throwup green</button>
+        <button class="quizBtn" data-answer="correct">Beautiful pink</button>
+    </div>
+
+    <div class="quizQuestion">
+        <p>3. What's my goal in life?</p>
+        <button class="quizBtn" data-answer="wrong">Become president</button>
+        <button class="quizBtn" data-answer="correct">Fist your but with your fist</button>
+        <button class="quizBtn" data-answer="wrong">Be gay</button>
+    </div>
+
+    <p id="quizMessage" style="color:#ff3366; font-weight:bold; margin-top:20px;"></p>
+    <button id="quizNextButton" class="hidden">Next 💖</button>
+</div>
+
+<!-- Math Challenge after Quiz -->
+<div id="mathChallengeSection" class="hidden">
+    <h2>Ofc we need a Math Challenge you nerd!🚀</h2>
+    <p>
+            Imagine you are building a tiny tiny tiny spaceship for one of your stinky farts. 
+            The ship weighs 12 kg and Tim Robinson's favorite snack weighs 0.5 kg. 
+            To reach orbit, you need exactly 2πr Newtons of thrust. What is r?
+    </p>
+
+    <button class="mathBtn" data-answer="wrong">6</button>
+    <button class="mathBtn" data-answer="correct">12 / (2π)</button>
+    <button class="mathBtn" data-answer="wrong">π</button>
+
+    <div>
+        <img src="tiny_spaceship.jpg" alt="Tiny spaceship" style="max-width:300px; width:80%; margin:20px auto; display:block; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.3);">
+    </div>
+
+    <p id="mathMessage" style="color:#ff3366; font-weight:bold; margin-top:20px;"></p>
+    <button id="mathNextButton" class="hidden">Next 💖</button>
+</div>
+
 <!-- Reward -->
 <div id="rewardSection" class="hidden">
     <h1>Congratulations! 💖</h1>
-    <img src="ourphoto.jpg" alt="Us together">
-    <p>Which one is right? (There will be a surprise if you answer it right)</p>
+    <img src="ourphoto.jpg" alt="Us together" style="max-width:300px; width:80%; margin:20px auto; display:block; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.3);">
+
+    <p>The last step before your reward, which one is right?</p>
     <div>
         <button id="sandraButton">Sandra loves Payton more and the most</button>
         <button id="paytonButton" disabled>Payton loves Sandra blahblablah</button>
     </div>
 </div>
 
-
 <!-- Surprise -->
 <div id="surpriseSection" class="hidden">
+    <h1>Yay you did it!! 💖</h1>
     <p>Your surprise is in your wardrobe you fucker🎁</p>
     <img src="surprise.jpg" alt="Surprise image">
 </div>
-
 
 <script>
 // Klickräknare för challenge
@@ -139,6 +168,9 @@ let clicks = 0;
 
 const startSection = document.getElementById('startSection');
 const loveInputSection = document.getElementById('loveInputSection');
+const danceFloorSection = document.getElementById('danceFloorSection');
+const quizSection = document.getElementById('quizSection');
+const mathChallengeSection = document.getElementById('mathChallengeSection');
 const rewardSection = document.getElementById('rewardSection');
 const surpriseSection = document.getElementById('surpriseSection');
 
@@ -169,9 +201,7 @@ document.getElementById('submitLove').addEventListener('click', () => {
     const inputField = document.getElementById('loveInput');
     if(input === "jag älskar dig"){
         loveInputSection.classList.add('hidden');
-        rewardSection.classList.remove('hidden');
-        launchConfetti(); // starta konfetti
-        launchHearts(); // hjärtan
+        danceFloorSection.classList.remove('hidden');
     } else {
         document.getElementById('errorMessage').innerText = "Oops! Try again! 💔";
         inputField.style.animation = "shake 0.3s";
@@ -179,11 +209,101 @@ document.getElementById('submitLove').addEventListener('click', () => {
     }
 });
 
+// Dance Floor
+const djButton = document.getElementById('djButton');
+djButton.addEventListener('click', () => {
+    const emojis = ['💖','🎉','🕺','💃','✨','🎶','🐒','🍕','🥸'];
+    for(let i=0;i<20;i++){
+        const emojiDiv = document.createElement('div');
+        emojiDiv.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+        emojiDiv.style.left = Math.random()*window.innerWidth + 'px';
+        emojiDiv.style.top = Math.random()*window.innerHeight + 'px';
+        emojiDiv.style.fontSize = (20+Math.random()*30)+'px';
+        document.getElementById('danceEmojis').appendChild(emojiDiv);
+
+        const xMove = (Math.random()-0.5)*500;
+        const yMove = (Math.random()-0.5)*500;
+        setTimeout(() => {
+            emojiDiv.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${Math.random()*360}deg)`;
+            emojiDiv.style.opacity = 0;
+        }, 50);
+
+        setTimeout(() => emojiDiv.remove(), 4000);
+    }
+});
+
+// Disco-lampor: bakgrundsfärg blinkar
+setInterval(() => {
+    if(!danceFloorSection.classList.contains('hidden')){
+        document.body.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 90%)`;
+    } else {
+        document.body.style.backgroundColor = '#FFD6E8';
+    }
+}, 500);
+
+// Nästa knapp -> quiz
+document.getElementById('danceNextButton').addEventListener('click', () => {
+    danceFloorSection.classList.add('hidden');
+    quizSection.classList.remove('hidden');
+});
+
+// Quiz-logik
+const quizButtons = document.querySelectorAll('.quizBtn');
+let correctAnswers = 0;
+quizButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const msg = document.getElementById('quizMessage');
+        if(btn.dataset.answer === "correct"){
+            correctAnswers++;
+            btn.style.background = '#4caf50';
+            btn.disabled = true;
+            msg.innerText = "";
+        } else {
+            msg.innerText = "Try again, fucker! 😎";
+            btn.style.background = '#ff1a66';
+            setTimeout(() => { btn.style.background = "linear-gradient(45deg, #ff6a6a, #ff3366)"; msg.innerText = ""; },1000);
+        }
+        if(correctAnswers === 3){
+            document.getElementById('quizNextButton').classList.remove('hidden');
+        }
+    });
+});
+
+// Quiz Next → Math Challenge
+document.getElementById('quizNextButton').addEventListener('click', () => {
+    quizSection.classList.add('hidden');
+    mathChallengeSection.classList.remove('hidden');
+});
+
+// Math Challenge
+const mathButtons = document.querySelectorAll('.mathBtn');
+mathButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const msg = document.getElementById('mathMessage');
+        if(btn.dataset.answer === "correct"){
+            btn.style.background = '#4caf50';
+            btn.disabled = true;
+            document.getElementById('mathNextButton').classList.remove('hidden');
+        } else {
+            msg.innerText = "Try again, fucker! 😎";
+            btn.style.background = '#ff1a66';
+            setTimeout(() => { btn.style.background = "linear-gradient(45deg, #ff6a6a, #ff3366)"; msg.innerText=''; },1000);
+        }
+    });
+});
+
+document.getElementById('mathNextButton').addEventListener('click', () => {
+    mathChallengeSection.classList.add('hidden');
+    rewardSection.classList.remove('hidden');
+    launchConfetti();
+    launchHearts();
+});
+
 // Sandra-knappen -> surprise-sidan
 document.getElementById('sandraButton').addEventListener('click', () => {
     rewardSection.classList.add('hidden');
     surpriseSection.classList.remove('hidden');
-    launchConfetti(); // konfetti
+    launchConfetti();
     launchHearts();
 });
 
@@ -233,4 +353,3 @@ function launchHearts(){
 </script>
 </body>
 </html>
-
